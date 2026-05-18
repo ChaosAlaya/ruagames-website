@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极游文化 RuaGames | 游戏内容 · 发行 · 研发</title>
+<meta name="description" content="极游文化——专注游戏文化的内容与创作公司，旗下运营Steam情报局、极游组等百万级粉丝账号，开发独立游戏《猛兽地牢》，并与多个游戏内容团队保持深度合作。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0d;
+    --bg-2: #14141a;
+    --bg-3: #1c1c24;
+    --bg-4: #25252f;
+    --line: #2a2a35;
+    --line-2: #3a3a48;
+    --ink: #f5f5f7;
+    --ink-2: #a8a8b3;
+    --ink-3: #6b6b78;
+    --cyan: #5BE3DE;
+    --cyan-dim: #2a8d8a;
+    --orange: #ff8c42;
+    --orange-bright: #ffb547;
+    --danger: #ff5577;
+    --steam: #66c0f4;
+
+    --font-display: 'Bebas Neue', 'Noto Sans SC', sans-serif;
+    --font-oswald: 'Oswald', 'Noto Sans SC', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Noto Sans SC', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.04; pointer-events: none; z-index: 1; mix-blend-mode: overlay;
+  }
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+  @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ============ 顶部公告条 ============ */
+  .announce {
+    background: linear-gradient(90deg, var(--orange), var(--orange-bright));
+    color: var(--bg);
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+  }
+  .announce a {
+    text-decoration: underline; text-underline-offset: 3px;
+    margin-left: 8px;
+  }
+  .announce::before { content: '◆ '; font-size: 10px; }
+
+  /* ============ NAV ============ */
+  nav {
+    position: sticky; top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(10, 10, 13, 0.85);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 38px; height: 38px;
+    background: var(--bg-3);
+    border: 1px solid var(--cyan-dim);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .brand-mark img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .brand-name { font-family: var(--font-display); font-size: 22px; letter-spacing: 1.5px; }
+  .brand-en { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 2px; margin-top: -4px; }
+
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--ink-2); font-size: 14px; font-weight: 500;
+    transition: color 0.2s; position: relative;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -6px; left: 0; right: 0; height: 1px;
+    background: var(--cyan); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.2s;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    padding: 10px 20px; background: var(--cyan); color: var(--bg);
+    border-radius: 999px; font-size: 13px; font-weight: 700;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--orange-bright); transform: translateY(-1px); }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+  }
+
+  /* ============ HERO 大轮播 ============ */
+  .hero {
+    position: relative;
+    height: clamp(560px, 78vh, 760px);
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .slider {
+    position: absolute; inset: 0;
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .slide {
+    flex: 0 0 100%;
+    position: relative;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+  .slide.active .slide-bg { transform: scale(1); }
+  .slide::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(10, 10, 13, 0.95) 0%,
+      rgba(10, 10, 13, 0.7) 40%,
+      rgba(10, 10, 13, 0.3) 100%
+    );
+    z-index: 1;
+  }
+  .slide::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(to top, var(--bg), transparent);
+    z-index: 1;
+  }
+
+  /* 占位渐变背景（你换实图后会被遮盖） */
+  .slide:nth-child(1) .slide-bg { background: radial-gradient(ellipse at 70% 50%, rgba(91, 227, 222, 0.35), transparent 60%), linear-gradient(135deg, #1a4a48, #0a0a0d); }
+  .slide:nth-child(2) .slide-bg { background: radial-gradient(ellipse at 70% 50%, rgba(255, 140, 66, 0.35), transparent 60%), linear-gradient(135deg, #4a2818, #0a0a0d); }
+  .slide:nth-child(3) .slide-bg { background: radial-gradient(ellipse at 70% 50%, rgba(180, 120, 255, 0.35), transparent 60%), linear-gradient(135deg, #2a1a4a, #0a0a0d); }
+
+  .slide-content {
+    position: relative; z-index: 2;
+    padding: 0 0 80px;
+    max-width: 720px;
+  }
+  .slide-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(91, 227, 222, 0.4); border-radius: 999px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--cyan);
+    letter-spacing: 2px; margin-bottom: 24px;
+  }
+  .slide-tag.warm {
+    border-color: rgba(255, 140, 66, 0.5); color: var(--orange-bright);
+  }
+  .slide-tag::before {
+    content: ''; width: 6px; height: 6px; background: currentColor; border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .slide h2 {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 1; letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .slide-desc {
+    font-size: clamp(15px, 1.2vw, 17px); color: var(--ink-2);
+    margin-bottom: 28px; max-width: 540px;
+  }
+  .slide-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .slide-num {
+    position: absolute; top: 40px; right: 60px; z-index: 3;
+    font-family: var(--font-display); font-size: clamp(80px, 12vw, 160px);
+    color: rgba(255, 255, 255, 0.05);
+    line-height: 0.8;
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .slide-num { display: none; }
+    .slide-content { padding-bottom: 60px; }
+  }
+
+  /* 轮播控制 */
+  .slider-nav {
+    position: absolute; bottom: 32px; left: 32px; z-index: 3;
+    display: flex; gap: 12px; align-items: center;
+  }
+  @media (max-width: 768px) { .slider-nav { left: 20px; bottom: 24px; } }
+  .dot {
+    width: 32px; height: 3px; background: rgba(255, 255, 255, 0.2);
+    border: none; cursor: pointer; transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .dot.active { width: 60px; }
+  .dot.active::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--cyan);
+    animation: progress 6s linear;
+  }
+  @keyframes progress { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  .slider-counter {
+    margin-left: 20px;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--ink-2); letter-spacing: 2px;
+  }
+  .slider-counter .cur { color: var(--cyan); font-size: 16px; }
+
+  .btn {
+    padding: 14px 26px; border-radius: 999px; font-weight: 700;
+    font-size: 14px; letter-spacing: 0.5px;
+    display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+    border: 1px solid transparent; cursor: pointer;
+  }
+  .btn-primary { background: var(--cyan); color: var(--bg); }
+  .btn-primary:hover { background: var(--orange-bright); transform: translateY(-2px); }
+  .btn-orange { background: var(--orange); color: var(--bg); }
+  .btn-orange:hover { background: var(--orange-bright); transform: translateY(-2px); }
+  .btn-ghost { background: rgba(255,255,255,0.05); color: var(--ink); border-color: var(--line-2); }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+  .btn .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* ============ 四板块快览 ============ */
+  .overview {
+    padding: 80px 0 40px;
+    position: relative;
+    margin-top: -120px;
+    z-index: 5;
+  }
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media (max-width: 960px) { .overview-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .overview-grid { grid-template-columns: 1fr; } }
+
+  .overview-card {
+    padding: 24px;
+    background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .overview-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan-dim);
+  }
+  .overview-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--cyan); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .overview-card:hover::after { transform: scaleX(1); }
+  .overview-card .num {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 2px;
+  }
+  .overview-card .name {
+    font-family: var(--font-display); font-size: 28px; letter-spacing: 1px;
+    margin: 12px 0 4px;
+  }
+  .overview-card .desc {
+    font-size: 12px; color: var(--ink-3); margin-bottom: 16px;
+    min-height: 32px;
+  }
+  .overview-card .stat {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--cyan); display: flex; justify-content: space-between;
+    padding-top: 12px; border-top: 1px dashed var(--line);
+  }
+
+  /* ============ Section 通用 ============ */
+  section.block { padding: 100px 0; position: relative; }
+  .block-header { margin-bottom: 56px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .block-eyebrow {
+    font-family: var(--font-mono); font-size: 12px; color: var(--cyan);
+    letter-spacing: 3px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .block-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--cyan); }
+  .block-title {
+    font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 68px);
+    line-height: 1; letter-spacing: -0.5px;
+  }
+  .block-title .cn { display: block; font-family: var(--font-body); font-weight: 900; font-size: 0.5em; color: var(--ink-2); margin-top: 8px; letter-spacing: 2px; }
+  .block-sub { color: var(--ink-2); font-size: 16px; max-width: 460px; }
+
+  /* ============ Steam 情报局 板块 ============ */
+  .steam-section {
+    background: linear-gradient(180deg, var(--bg), #0d1419 50%, var(--bg));
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .steam-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 960px) { .steam-hero { grid-template-columns: 1fr; gap: 40px; } }
+
+  .steam-info .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; background: rgba(102, 192, 244, 0.15);
+    border: 1px solid var(--steam); border-radius: 999px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--steam);
+    letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .steam-info h3 {
+    font-family: var(--font-display); font-size: clamp(48px, 7vw, 92px);
+    line-height: 1; letter-spacing: -1px; margin-bottom: 16px;
+  }
+  .steam-info h3 .ll { display: block; font-family: var(--font-body); font-weight: 900; font-size: 0.4em; letter-spacing: 4px; color: var(--ink-2); margin-top: 8px; }
+  .steam-info > p {
+    color: var(--ink-2); font-size: 16px; margin-bottom: 32px; line-height: 1.8;
+  }
+  .steam-info > p strong { color: var(--ink); }
+
+  /* —— 强引导购买淘宝 —— */
+  .key-card {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.12), rgba(102, 192, 244, 0.08));
+    border: 1px solid var(--orange);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .key-card::before {
+    content: 'BUY · 购买'; position: absolute; top: -10px; left: 24px;
+    background: var(--bg); padding: 0 10px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--orange-bright); letter-spacing: 2px;
+  }
+  .key-card .title {
+    font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .key-card .sub {
+    font-size: 14px; color: var(--ink-2); margin-bottom: 20px;
+  }
+  .key-features {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+  .key-features span {
+    padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-2);
+  }
+  .key-features span::before { content: '✓ '; color: var(--cyan); }
+
+  .acc-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* 右侧 STEAM 情报局 数据展板 */
+  .steam-stats {
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+  }
+  .steam-stats::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--steam), transparent);
+  }
+  .steam-stats-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 24px;
+  }
+  .steam-stats-header .label {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 2px;
+  }
+  .steam-stats-header .live {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 1px;
+  }
+  .steam-stats-header .live::before {
+    content: ''; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyan);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .big-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px;
+  }
+  .big-stat {
+    padding: 20px; background: var(--bg-3);
+    border-radius: 12px; border: 1px solid var(--line);
+  }
+  .big-stat .num {
+    font-family: var(--font-display); font-size: 44px;
+    color: var(--cyan); line-height: 1;
+  }
+  .big-stat .num.warm { color: var(--orange-bright); }
+  .big-stat .num .u { font-size: 16px; color: var(--ink-2); margin-left: 4px; }
+  .big-stat .l {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3);
+    letter-spacing: 1px; margin-top: 8px;
+  }
+  .mini-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .mini-stat .v {
+    font-family: var(--font-display); font-size: 24px; color: var(--ink);
+  }
+  .mini-stat .l {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 1px;
+  }
+
+  /* ============ 极游组 板块 ============ */
+  .jiyou-section {
+    padding: 100px 0;
+  }
+  .jiyou-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 960px) { .jiyou-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .jiyou-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(91, 227, 222, 0.25), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(255, 140, 66, 0.20), transparent 50%),
+      linear-gradient(135deg, var(--bg-3), var(--bg));
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 40px;
+  }
+  .jiyou-visual::before {
+    content: '〔 视频封面位 · 后期可换 〕';
+    position: absolute; top: 24px; right: 24px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 2px;
+  }
+  .jiyou-big {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 12vw, 180px);
+    line-height: 0.85;
+    color: var(--ink);
+    letter-spacing: -2px;
+  }
+  .jiyou-big .accent { color: var(--cyan); }
+  .jiyou-slogan {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: 3px;
+    margin-top: 12px;
+  }
+  .jiyou-meta-strip {
+    display: flex; gap: 16px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 12px 18px;
+    border: 1px solid var(--line);
+    margin-top: 24px;
+  }
+  .jiyou-meta-strip .m {
+    flex: 1; text-align: center;
+  }
+  .jiyou-meta-strip .v {
+    font-family: var(--font-display); font-size: 22px; color: var(--cyan);
+  }
+  .jiyou-meta-strip .l {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 1px;
+  }
+
+  .jiyou-info h3 {
+    font-family: var(--font-display); font-size: clamp(48px, 7vw, 88px);
+    line-height: 1; letter-spacing: -0.5px; margin-bottom: 16px;
+  }
+  .jiyou-info > p {
+    color: var(--ink-2); font-size: 16px; margin-bottom: 24px; line-height: 1.8;
+  }
+  .content-tags {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+  }
+  .content-tags span {
+    padding: 6px 12px; background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 6px; font-size: 12px; color: var(--ink-2);
+  }
+
+  /* ============ 猛兽地牢 板块 ============ */
+  .game-section {
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(255, 85, 119, 0.15), transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(180, 120, 255, 0.12), transparent 50%),
+      var(--bg);
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+  }
+  .game-section::before {
+    content: 'PROJECT · 01';
+    position: absolute; top: 60px; right: 32px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: 3px;
+  }
+  .game-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 480px;
+  }
+  @media (max-width: 960px) { .game-card { grid-template-columns: 1fr; } }
+
+  .game-visual {
+    background:
+      radial-gradient(circle at 30% 50%, rgba(255, 85, 119, 0.4), transparent 60%),
+      radial-gradient(circle at 70% 50%, rgba(180, 120, 255, 0.3), transparent 60%),
+      linear-gradient(135deg, #2a1318, #0a0a0d);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 320px;
+    overflow: hidden;
+  }
+  .game-visual::before {
+    content: '〔 概念图位 · 待替换 〕';
+    position: absolute; bottom: 20px; left: 24px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 2px;
+  }
+  .beast-symbol {
+    width: 180px; height: 180px;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+  }
+  .beast-symbol::before, .beast-symbol::after {
+    content: ''; position: absolute; inset: 0;
+    border: 2px solid var(--danger); border-radius: 50%;
+  }
+  .beast-symbol::after {
+    transform: scale(0.7); border-color: #b478ff;
+    animation: spin 12s linear infinite;
+    border-style: dashed;
+  }
+  .beast-symbol::before {
+    animation: spin-r 16s linear infinite;
+    border-style: dashed;
+  }
+  @keyframes spin { from { transform: scale(0.7) rotate(0); } to { transform: scale(0.7) rotate(360deg); } }
+  @keyframes spin-r { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+  .beast-glyph {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 80px;
+    color: var(--ink); letter-spacing: -2px;
+  }
+
+  .game-info { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 768px) { .game-info { padding: 32px; } }
+
+  .game-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; background: rgba(255, 85, 119, 0.15);
+    border: 1px solid var(--danger);
+    border-radius: 999px; color: var(--danger);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+    width: fit-content; margin-bottom: 20px;
+  }
+  .game-status::before {
+    content: ''; width: 6px; height: 6px; background: var(--danger); border-radius: 50%;
+    box-shadow: 0 0 8px var(--danger);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  .game-title {
+    font-family: var(--font-display); font-size: clamp(48px, 6vw, 80px);
+    line-height: 1; letter-spacing: -0.5px; margin-bottom: 12px;
+  }
+  .game-en {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--ink-3); letter-spacing: 3px; margin-bottom: 24px;
+  }
+  .game-info p {
+    color: var(--ink-2); font-size: 15px; margin-bottom: 24px; line-height: 1.8;
+  }
+  .game-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .game-meta .item .l {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 1px;
+  }
+  .game-meta .item .v {
+    font-size: 14px; color: var(--ink); margin-top: 6px; font-weight: 500;
+  }
+
+  /* ============ 合作伙伴 板块 ============ */
+  .partners-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--line);
+  }
+  .partner-grid {
+    display: grid;
+    grid-template-columns: 1fr; gap: 20px;
+  }
+
+  .partner-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+    display: flex; flex-direction: column;
+  }
+  .partner-card:hover { border-color: var(--cyan-dim); transform: translateY(-4px); }
+
+  .partner-num {
+    position: absolute; top: 24px; right: 28px;
+    font-family: var(--font-display); font-size: 64px;
+    color: var(--bg-4); line-height: 0.8;
+    transition: color 0.3s;
+  }
+  .partner-card:hover .partner-num { color: var(--cyan-dim); }
+
+  .partner-name {
+    font-family: var(--font-display); font-size: 36px; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .partner-type {
+    font-family: var(--font-mono); font-size: 11px; color: var(--cyan);
+    letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .partner-desc {
+    color: var(--ink-2); font-size: 14px; flex-grow: 1; margin-bottom: 20px;
+  }
+  .partner-meta {
+    display: flex; gap: 16px; padding-top: 16px; border-top: 1px dashed var(--line);
+  }
+  .partner-meta .m { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 1px; }
+
+  .more-partners {
+    margin-top: 32px; text-align: center;
+    padding: 24px; border: 1px dashed var(--line);
+    border-radius: 12px;
+    color: var(--ink-3); font-size: 14px;
+  }
+
+  /* —— 合作伙伴整体左右布局 —— */
+  .partners-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .partners-layout { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* —— 右侧网络图区（伪3D 星系） —— */
+  .partner-network {
+    position: relative;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(91, 227, 222, 0.10), transparent 65%),
+      radial-gradient(circle at 80% 20%, rgba(255, 140, 66, 0.06), transparent 50%),
+      var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px;
+    aspect-ratio: 1 / 1.05;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .network-header {
+    position: relative; z-index: 5; margin-bottom: 8px;
+    pointer-events: none;
+  }
+  .network-eyebrow {
+    font-family: var(--font-mono); font-size: 10px; color: var(--cyan);
+    letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .network-title {
+    font-family: var(--font-display); font-size: 24px; letter-spacing: 1px;
+  }
+
+  /* 星空粒子背景层（不随舞台旋转） */
+  .star-bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 27% 47%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 43% 22%, rgba(91, 227, 222, 0.5), transparent),
+      radial-gradient(1px 1px at 64% 73%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 88% 38%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 17% 78%, rgba(255, 140, 66, 0.4), transparent),
+      radial-gradient(1px 1px at 92% 88%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 55% 12%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 38% 64%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1.2px 1.2px at 76% 56%, rgba(91, 227, 222, 0.4), transparent);
+    animation: star-twinkle 8s ease-in-out infinite;
+  }
+  @keyframes star-twinkle {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* 旋转舞台（所有节点和连线都在里面，整体旋转） */
+  .orbit-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    cursor: grab;
+    transform-origin: center center;
+    will-change: transform;
+    /* 默认缓慢自转，JS 会接管 */
+  }
+  .orbit-stage.dragging { cursor: grabbing; }
+  .orbit-stage.dragging * { user-select: none; }
+
+  .network-lines {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* 通用节点 */
+  .net-node {
+    position: absolute;
+    left: 0; top: 0;
+    /* JS 会通过 transform: translate(x, y) translate(-50%, -50%) 来定位 */
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    z-index: 2;
+    text-decoration: none; color: inherit; cursor: pointer;
+    will-change: transform;
+  }
+  .net-node.center { z-index: 5; }
+  .net-node.planet { z-index: 4; }
+  .net-node.sat { z-index: 3; }
+
+  /* 节点内的"反向旋转容器"——抵消舞台旋转保持正向 */
+  .node-counter-rotate {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    will-change: transform;
+  }
+
+  /* 圆形头像框 */
+  .frame {
+    border-radius: 50%;
+    background: var(--bg-3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); color: var(--ink-2);
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* 中心：极游文化（最大） */
+  .frame-center {
+    width: 92px; height: 92px;
+    border: 2px solid var(--cyan);
+    box-shadow:
+      0 0 40px rgba(91, 227, 222, 0.5),
+      0 0 80px rgba(91, 227, 222, 0.2),
+      inset 0 0 14px rgba(0,0,0,0.5);
+    background: var(--bg);
+    animation: pulse-glow 3.5s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 40px rgba(91, 227, 222, 0.5), 0 0 80px rgba(91, 227, 222, 0.2), inset 0 0 14px rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 50px rgba(91, 227, 222, 0.7), 0 0 100px rgba(91, 227, 222, 0.3), inset 0 0 14px rgba(0,0,0,0.5); }
+  }
+
+  /* 团体头像（中等） */
+  .frame-leader {
+    width: 64px; height: 64px;
+    border: 2px solid var(--cyan-dim);
+    font-size: 26px;
+    box-shadow: 0 0 16px rgba(91, 227, 222, 0.25);
+  }
+  /* Steam情报局特殊蓝色 */
+  .steam-frame {
+    border-color: var(--steam);
+    color: var(--steam);
+    box-shadow: 0 0 16px rgba(102, 192, 244, 0.35);
+  }
+
+  /* 核心成员（Mr.quin / 羽毛）放大 */
+  .frame-core {
+    width: 56px; height: 56px;
+    border: 2px solid var(--orange-bright);
+    font-size: 22px;
+    color: var(--orange-bright);
+    box-shadow: 0 0 18px rgba(255, 181, 71, 0.35);
+  }
+
+  /* 子节点（小） */
+  .frame-child {
+    width: 42px; height: 42px;
+    border: 1.5px solid var(--line-2);
+    font-size: 16px;
+    color: var(--ink-3);
+  }
+
+  /* hover 效果 */
+  .net-node:hover .frame {
+    border-color: var(--cyan);
+    box-shadow: 0 0 24px rgba(91, 227, 222, 0.65);
+  }
+  .net-node:hover .frame-center { transform: scale(1.05); }
+  .net-node:hover .frame-leader { transform: scale(1.08); }
+  .net-node:hover .frame-core { transform: scale(1.1); }
+  .net-node:hover .frame-child { transform: scale(1.15); }
+
+  /* 节点标签 */
+  .node-label {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-2); letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: color 0.2s;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  }
+  .node-label.small { font-size: 9px; color: var(--ink-3); }
+  .node-label.center-label {
+    font-family: var(--font-display); font-size: 13px; letter-spacing: 1.5px;
+    color: var(--cyan); margin-top: 2px;
+  }
+  .net-node:hover .node-label { color: var(--cyan); }
+  .net-node.core:hover .node-label { color: var(--orange-bright); }
+
+  .network-footer {
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--ink-3); letter-spacing: 2px;
+    z-index: 2;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* 移动端 */
+  @media (max-width: 540px) {
+    .partner-grid { grid-template-columns: 1fr !important; }
+    .frame-center { width: 68px; height: 68px; }
+    .frame-leader { width: 50px; height: 50px; font-size: 20px; }
+    .frame-core { width: 44px; height: 44px; font-size: 18px; }
+    .frame-child { width: 34px; height: 34px; font-size: 13px; }
+    .node-label { font-size: 9px; }
+    .node-label.small { font-size: 8px; }
+  }
+
+  /* ============ 关于 + 合作 ============ */
+  .about-section {
+    background: var(--bg-2);
+    padding: 100px 0;
+    border-top: 1px solid var(--line);
+  }
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: center; }
+  @media (max-width: 960px) { .about-grid { grid-template-columns: 1fr; gap: 50px; } }
+
+  .about-text p {
+    color: var(--ink-2); font-size: 16px; margin-bottom: 20px; line-height: 1.9;
+  }
+  .about-text strong { color: var(--ink); }
+
+  .contact-box {
+    background: var(--bg-3); border: 1px solid var(--line-2);
+    border-radius: 20px; padding: 36px;
+  }
+  .contact-box h3 {
+    font-family: var(--font-display); font-size: 36px; margin-bottom: 8px;
+  }
+  .contact-box p { color: var(--ink-3); font-size: 13px; margin-bottom: 24px; }
+
+  .contact-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-row .l { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: 2px; }
+  .contact-row .v { font-size: 14px; color: var(--ink); font-weight: 500; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 48px 0 32px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
+
+  .footer-brand .brand-name { font-size: 26px; }
+  .footer-brand p {
+    color: var(--ink-3); font-size: 13px; margin-top: 12px; max-width: 320px;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px; color: var(--cyan);
+    letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block; color: var(--ink-2); font-size: 13px;
+    margin-bottom: 10px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cyan); }
+
+  .footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom .copy {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: 1px;
+  }
+  .footer-bottom .icp {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  }
+
+  /* ============ 浮窗 CTA - Steam Key ============ */
+  .float-cta {
+    position: fixed; bottom: 24px; right: 24px; z-index: 50;
+    background: linear-gradient(135deg, var(--orange), var(--orange-bright));
+    color: var(--bg); padding: 14px 22px; border-radius: 999px;
+    font-weight: 700; font-size: 14px;
+    box-shadow: 0 10px 40px rgba(255, 140, 66, 0.4);
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; transition: all 0.3s;
+    transform: translateY(100px); opacity: 0;
+  }
+  .float-cta.show { transform: translateY(0); opacity: 1; }
+  .float-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(255, 140, 66, 0.55); }
+  .float-cta .ic { font-size: 18px; }
+  .float-cta-close {
+    background: rgba(0,0,0,0.2); border: none; color: var(--bg);
+    width: 20px; height: 20px; border-radius: 50%;
+    margin-left: 6px; cursor: pointer; font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 540px) {
+    .float-cta { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 13px; }
+  }
+
+  /* ============ 回到顶部 ============ */
+  .to-top {
+    position: fixed; bottom: 24px; left: 24px; z-index: 49;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--bg-3); border: 1px solid var(--line-2);
+    color: var(--ink); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; opacity: 0; pointer-events: none;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--cyan); color: var(--bg); border-color: var(--cyan); }
+
+  /* —— 滚动进入动画 —— */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- 顶部公告条 -->
+<div class="announce">
+  Steam Key 正版授权销售 · 担保下单
+  <a href="#steam-keys">前往 Steam 情报局购买 →</a>
+</div>
+
+<!-- 导航栏 -->
+<nav>
+  <div class="container">
+    <a href="#" class="brand">
+      <span class="brand-mark"><img src="data:image/jpeg;base64,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" alt="极游文化 RuaGames Logo"></span>
+      <div>
+        <div class="brand-name">极游文化</div>
+        <div class="brand-en">RUAGAMES</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#steam">Steam 情报局</a>
+      <a href="#jiyou">极游组</a>
+      <a href="#game">猛兽地牢</a>
+      <a href="#partners">合作伙伴</a>
+      <a href="#join">加入我们</a>
+      <a href="#about">关于我们</a>
+    </div>
+    <a href="#contact" class="nav-cta">商务合作</a>
+  </div>
+</nav>
+
+<!-- HERO 大轮播 -->
+<header class="hero">
+  <div class="slider" id="slider">
+
+    <div class="slide active">
+      <div class="slide-bg"></div>
+      <div class="slide-num">01</div>
+      <div class="container">
+        <div class="slide-content">
+          <div class="slide-tag">FEATURED · 头条推荐</div>
+          <h2>分享游戏快乐<br>传播游戏文化</h2>
+          <p class="slide-desc">极游文化（RuaGames）——专注游戏文化的内容创作公司，旗下运营百万级粉丝账号矩阵，业务延伸至 Steam 发行、独立游戏研发。</p>
+          <div class="slide-actions">
+            <a href="#steam" class="btn btn-primary">查看业务 <span class="arrow">→</span></a>
+            <a href="#about" class="btn btn-ghost">关于我们</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-bg"></div>
+      <div class="slide-num">02</div>
+      <div class="container">
+        <div class="slide-content">
+          <div class="slide-tag warm">HOT · Steam Key 五一狂欢</div>
+          <h2>3A 史低 · 0.5 折起<br>正版授权 · 担保交易</h2>
+          <p class="slide-desc">每日更新打折资讯，年度大作、独立精品、经典回归——通过淘宝担保下单，秒发 Key。</p>
+          <div class="slide-actions">
+            <a href="#steam-keys" class="btn btn-orange">前往购买 <span class="arrow">→</span></a>
+            <a href="#steam" class="btn btn-ghost">了解情报局</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-bg"></div>
+      <div class="slide-num">03</div>
+      <div class="container">
+        <div class="slide-content">
+          <div class="slide-tag">DEV · 独立游戏研发中</div>
+          <h2>《猛兽地牢》<br>研发进行中</h2>
+          <p class="slide-desc">由极游文化旗下工作室开发的独立游戏，预计登陆 Steam 平台。更多消息陆续公开。</p>
+          <div class="slide-actions">
+            <a href="#game" class="btn btn-primary">查看详情 <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slider-nav">
+    <button class="dot active" data-index="0" aria-label="第1张"></button>
+    <button class="dot" data-index="1" aria-label="第2张"></button>
+    <button class="dot" data-index="2" aria-label="第3张"></button>
+    <span class="slider-counter"><span class="cur">01</span> / 03</span>
+  </div>
+</header>
+
+<!-- 四板块快览 -->
+<div class="overview">
+  <div class="container">
+    <div class="overview-grid">
+      <a href="https://shop396413582.taobao.com/category.htm?spm=a21n57.shop_search.0.0.e41022b0fSBpEj" target="_blank" class="overview-card">
+        <div class="num">01 / FLAGSHIP</div>
+        <div class="name">Steam 情报局</div>
+        <div class="desc">每日 Steam 打折资讯</div>
+        <div class="stat"><span>优惠购买折扣游戏</span><span>↗</span></div>
+      </a>
+      <a href="submit.html" class="overview-card">
+        <div class="num">02 / CONTENT</div>
+        <div class="name">极游组</div>
+        <div class="desc">游戏文化深度内容</div>
+        <div class="stat"><span>有偿投稿</span><span>→</span></div>
+      </a>
+      <a href="#game" class="overview-card">
+        <div class="num">03 / STUDIO</div>
+        <div class="name">猛兽地牢</div>
+        <div class="desc">独立游戏研发中</div>
+        <div class="stat"><span>即将登陆 Steam</span><span>→</span></div>
+      </a>
+      <a href="#partners" class="overview-card">
+        <div class="num">04 / NETWORK</div>
+        <div class="name">合作伙伴</div>
+        <div class="desc">更多优质游戏内容</div>
+        <div class="stat"><span>欢迎关注</span><span>→</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Steam 情报局 ============ -->
+<section id="steam" class="block steam-section">
+  <div class="container">
+    <div class="block-header reveal">
+      <div>
+        <div class="block-eyebrow">FLAGSHIP · 01</div>
+        <h2 class="block-title">STEAM 情报局<span class="cn">公司旗舰账号</span></h2>
+      </div>
+      <p class="block-sub">每日更新的 Steam 打折资讯账号，是我们覆盖最广、商务来源最核心的旗舰品牌。</p>
+    </div>
+
+    <div class="steam-hero">
+      <div class="steam-info reveal">
+        <div class="badge">▶ STEAM DAILY DEALS</div>
+        <h3>Steam 情报局<span class="ll">关注我们 · 不错过每一个好价</span></h3>
+        <p>关注我们，获取 <strong>最新最快的 Steam 每日情报</strong>，与全平台游戏资讯。每周 1-6 更新，周日随缘。覆盖 3A 大作打折、独立游戏推荐、版本对比、手柄/外设测评等丰富品类。</p>
+
+        <!-- Steam Key 强引导卡 -->
+        <div id="steam-keys" class="key-card">
+          <div class="title">正版 Steam Key 销售</div>
+          <div class="sub">官方授权渠道 · 淘宝担保交易 · 下单秒发</div>
+          <div class="key-features">
+            <span>正版授权</span>
+            <span>担保交易</span>
+            <span>客服在线</span>
+            <span>支持退款</span>
+          </div>
+          <div class="acc-links">
+            <a href="https://shop396413582.taobao.com/category.htm?spm=a21n57.shop_search.0.0.e41022b0fSBpEj" target="_blank" class="btn btn-orange">前往淘宝下单 <span class="arrow">→</span></a>
+            <a href="#contact" class="btn btn-ghost">客服 QQ：1214065405</a>
+          </div>
+        </div>
+
+        <div class="acc-links">
+          <a href="https://space.bilibili.com/473519710" target="_blank" class="btn btn-ghost">B站主页 →</a>
+        </div>
+      </div>
+
+      <div class="steam-stats reveal">
+        <div class="steam-stats-header">
+          <span class="label">LIVE STATS · 实时数据</span>
+          <span class="live">SYNCING</span>
+        </div>
+        <div class="big-stats">
+          <div class="big-stat">
+            <div class="num">164<span class="u">万</span></div>
+            <div class="l">▌ B站粉丝</div>
+          </div>
+          <div class="big-stat">
+            <div class="num warm">2.9<span class="u">亿</span></div>
+            <div class="l">▌ 累计播放</div>
+          </div>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <div class="v">2063.9<span style="font-size:13px;color:var(--ink-3)">万</span></div>
+            <div class="l">获赞</div>
+          </div>
+          <div class="mini-stat">
+            <div class="v">1679</div>
+            <div class="l">投稿数</div>
+          </div>
+          <div class="mini-stat">
+            <div class="v">每周 6 更</div>
+            <div class="l">更新频率</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 极游组 ============ -->
+<section id="jiyou" class="block jiyou-section">
+  <div class="container">
+    <div class="block-header reveal">
+      <div>
+        <div class="block-eyebrow">CONTENT · 02</div>
+        <h2 class="block-title">极游组<span class="cn">游戏文化深度内容</span></h2>
+      </div>
+      <p class="block-sub">B站知名游戏 UP 主认证账号，专注作品回顾、文化解读与玩家话题。</p>
+    </div>
+
+    <div class="jiyou-grid">
+      <div class="jiyou-visual reveal">
+        <div>
+          <div class="jiyou-big"><span class="accent">极</span>游组</div>
+          <div class="jiyou-slogan">JI YOU ZU · GAMING CULTURE</div>
+        </div>
+        <div class="jiyou-meta-strip">
+          <div class="m"><div class="v">19.4万</div><div class="l">FOLLOWERS</div></div>
+          <div class="m"><div class="v">4743万</div><div class="l">VIEWS</div></div>
+          <div class="m"><div class="v">847</div><div class="l">VIDEOS</div></div>
+        </div>
+      </div>
+
+      <div class="jiyou-info reveal">
+        <h3>讲述游戏<br>本身的故事</h3>
+        <p>从 20 年前的电竞遗珠，到当下的 3A 新作；从经典 RPG 的回望，到独立精品的发掘——极游组用一支视频，把那些值得讲的游戏认真讲完。</p>
+        <p style="color: var(--ink-3); font-size: 14px;">代表合集："极道话" 17 期 · 共 14 个合集系列在更新中。</p>
+        <div class="content-tags">
+          <span>游戏评测</span>
+          <span>作品回顾</span>
+          <span>文化解读</span>
+          <span>玩梗吐槽</span>
+          <span>独立游戏</span>
+          <span>经典回望</span>
+        </div>
+        <div class="acc-links">
+          <a href="https://space.bilibili.com/198512590" target="_blank" class="btn btn-primary">访问 B 站 <span class="arrow">→</span></a>
+          <a href="https://weibo.com/u/5186845471" target="_blank" class="btn btn-ghost">访问微博</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 猛兽地牢 ============ -->
+<section id="game" class="block game-section">
+  <div class="container">
+    <div class="block-header reveal">
+      <div>
+        <div class="block-eyebrow">STUDIO · 03</div>
+        <h2 class="block-title">猛兽地牢<span class="cn">研发中独立游戏</span></h2>
+      </div>
+      <p class="block-sub">极游文化旗下工作室自研项目，预计登陆 Steam。</p>
+    </div>
+
+    <div class="game-card reveal">
+      <div class="game-visual">
+        <div class="beast-symbol">
+          <div class="beast-glyph">猛</div>
+        </div>
+      </div>
+      <div class="game-info">
+        <div class="game-status">IN DEVELOPMENT · 研发中</div>
+        <h3 class="game-title">猛兽地牢</h3>
+        <div class="game-en">BEAST DUNGEON · 2D 俯视角肉鸽冒险</div>
+        <p>一款 Roguelike 游戏。扮演不同的<strong>动物兽人</strong>闯荡关卡，收集装备、构筑你的 build，挑战强大的 Boss。</p>
+        <p style="font-size: 14px; color: var(--ink-3);">操作你的兽人英雄，在地牢中收集装备，选择有效的组合形成强力的成长路径与战斗体系，向更深、更强的 Boss 发起冲击。一个由动物兽人组成的剑与魔法世界，正在等你冒险。</p>
+        <div class="game-meta">
+          <div class="item">
+            <div class="l">GENRE</div>
+            <div class="v">肉鸽冒险闯关</div>
+          </div>
+          <div class="item">
+            <div class="l">PLATFORM</div>
+            <div class="v">Steam (PC)</div>
+          </div>
+          <div class="item">
+            <div class="l">RELEASE</div>
+            <div class="v">敬请期待</div>
+          </div>
+        </div>
+        <div class="acc-links">
+          <a href="#contact" class="btn btn-primary">关注开发进度 <span class="arrow">→</span></a>
+          <a href="#" class="btn btn-ghost">Steam 商店页（即将开放）</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 合作伙伴 ============ -->
+<section id="partners" class="block partners-section">
+  <div class="container">
+    <div class="block-header reveal">
+      <div>
+        <div class="block-eyebrow">NETWORK · 04</div>
+        <h2 class="block-title">合作伙伴<span class="cn">游戏内容生态网络</span></h2>
+      </div>
+      <p class="block-sub">和优秀的游戏内容团队一起，构建更丰富的游戏文化矩阵。</p>
+    </div>
+
+    <div class="partners-layout">
+      <!-- 左侧：合作团队卡片 -->
+      <div class="partner-grid">
+        <div class="partner-card reveal">
+          <div class="partner-num">01</div>
+          <div class="partner-name">猛男寨</div>
+          <div class="partner-type">GAME STREAMERS · 快乐摸鱼团体</div>
+          <div class="partner-desc">由摸鱼文化运营，知名游戏主播 Mr.quin 和他的朋友们组成的快乐摸鱼团体。</div>
+          <div class="partner-meta">
+            <span class="m">直播 · 主播矩阵 · 联动</span>
+          </div>
+        </div>
+
+        <div class="partner-card reveal">
+          <div class="partner-num">02</div>
+          <div class="partner-name">喂狗组</div>
+          <div class="partner-type">GAME SPEEDRUN · 单机速通团队</div>
+          <div class="partner-desc">知名单机速通团队，专注高难度通关、速通挑战与硬核体验内容产出。</div>
+          <div class="partner-meta">
+            <a href="https://space.bilibili.com/16693558" target="_blank" class="m" style="color: var(--cyan); text-decoration: none;">访问 B 站主页 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：合作主播树状网络（伪3D 星系） -->
+      <div class="partner-network reveal">
+        <div class="network-header">
+          <div class="network-eyebrow">CONTENT CREATORS · 合作主播矩阵</div>
+          <div class="network-title">内容矩阵</div>
+        </div>
+
+        <!-- 星空粒子背景层 -->
+        <div class="star-bg" aria-hidden="true"></div>
+
+        <!-- 旋转舞台（包含连线和所有节点，JS 完全接管定位） -->
+        <div class="orbit-stage" id="orbitStage">
+
+          <!-- SVG 连接线（JS 每帧重绘） -->
+          <svg class="network-lines" id="networkLines" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <linearGradient id="lineGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#5BE3DE" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#5BE3DE" stop-opacity="0.25"/>
+              </linearGradient>
+              <linearGradient id="lineGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff8c42" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#ff8c42" stop-opacity="0.15"/>
+              </linearGradient>
+            </defs>
+            <!-- 线条由 JS 动态生成插入 -->
+          </svg>
+
+          <!-- 中心：极游文化 -->
+          <a href="#" class="net-node center"
+             id="node-center"
+             data-base-x="50" data-base-y="50">
+            <div class="node-counter-rotate">
+              <div class="frame frame-center">
+                <img src="data:image/jpeg;base64,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" alt="极游文化">
+              </div>
+              <div class="node-label center-label">极游文化</div>
+            </div>
+          </a>
+
+          <!-- 行星：Steam情报局（绕中心，独立、无卫星） -->
+          <a href="https://space.bilibili.com/473519710" target="_blank" data-avatar="assets/avatars/steam.jpg" class="net-node planet"
+             id="node-steam"
+             data-parent="node-center"
+             data-base-x="28" data-base-y="30"
+             data-orbit-r="2.5" data-orbit-speed="0.4" data-orbit-phase="0">
+            <div class="node-counter-rotate">
+              <div class="frame frame-leader steam-frame"><span>S</span></div>
+              <div class="node-label">Steam情报局</div>
+            </div>
+          </a>
+
+          <!-- 行星：猛男寨（绕中心，带卫星集群） -->
+          <a href="https://space.bilibili.com/3493137374775663" target="_blank" data-avatar="assets/avatars/mengnanzhai.jpg" class="net-node planet"
+             id="node-mnz"
+             data-parent="node-center"
+             data-base-x="72" data-base-y="18"
+             data-orbit-r="2.5" data-orbit-speed="0.35" data-orbit-phase="90">
+            <div class="node-counter-rotate">
+              <div class="frame frame-leader"><span>猛</span></div>
+              <div class="node-label">猛男寨</div>
+            </div>
+          </a>
+
+          <!-- 猛男寨的卫星集群 -->
+          <a href="https://space.bilibili.com/15810" target="_blank" data-avatar="assets/avatars/mrquin.jpg" class="net-node sat core"
+             data-parent="node-mnz"
+             data-base-x="58" data-base-y="32"
+             data-orbit-r="3" data-orbit-speed="0.55" data-orbit-phase="0">
+            <div class="node-counter-rotate">
+              <div class="frame frame-core"><span>Q</span></div>
+              <div class="node-label">Mr.quin</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/48039" target="_blank" data-avatar="assets/avatars/beijixiongshengfan.jpg" class="net-node sat"
+             data-parent="node-mnz"
+             data-base-x="85" data-base-y="30"
+             data-orbit-r="3.5" data-orbit-speed="0.7" data-orbit-phase="60">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>北</span></div>
+              <div class="node-label small">北极熊剩饭</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/1472906636" target="_blank" data-avatar="assets/avatars/shuangge.jpg" class="net-node sat"
+             data-parent="node-mnz"
+             data-base-x="63" data-base-y="11"
+             data-orbit-r="3" data-orbit-speed="0.6" data-orbit-phase="120">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>爽</span></div>
+              <div class="node-label small">爽哥</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/3822341" target="_blank" data-avatar="assets/avatars/jizhidekenni.jpg" class="net-node sat"
+             data-parent="node-mnz"
+             data-base-x="78" data-base-y="35"
+             data-orbit-r="3.2" data-orbit-speed="0.65" data-orbit-phase="180">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>肯</span></div>
+              <div class="node-label small">机智的肯尼</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/1343403" target="_blank" data-avatar="assets/avatars/jihuang.jpg" class="net-node sat"
+             data-parent="node-mnz"
+             data-base-x="70" data-base-y="45"
+             data-orbit-r="2.8" data-orbit-speed="0.5" data-orbit-phase="240">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>皇</span></div>
+              <div class="node-label small">机皇</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/352111" target="_blank" data-avatar="assets/avatars/tateer.jpg" class="net-node sat"
+             data-parent="node-mnz"
+             data-base-x="87" data-base-y="12"
+             data-orbit-r="3.5" data-orbit-speed="0.45" data-orbit-phase="300">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>獭</span></div>
+              <div class="node-label small">獭耳</div>
+            </div>
+          </a>
+
+          <!-- 行星：喂狗组（绕中心，带卫星集群） -->
+          <a href="https://space.bilibili.com/16693558" target="_blank" data-avatar="assets/avatars/weigouzu.jpg" class="net-node planet"
+             id="node-wgz"
+             data-parent="node-center"
+             data-base-x="18" data-base-y="72"
+             data-orbit-r="2.5" data-orbit-speed="0.32" data-orbit-phase="180">
+            <div class="node-counter-rotate">
+              <div class="frame frame-leader"><span>喂</span></div>
+              <div class="node-label">喂狗组</div>
+            </div>
+          </a>
+
+          <!-- 喂狗组的卫星集群 -->
+          <a href="https://space.bilibili.com/2755363" target="_blank" data-avatar="assets/avatars/yumao.jpg" class="net-node sat core"
+             data-parent="node-wgz"
+             data-base-x="30" data-base-y="60"
+             data-orbit-r="3" data-orbit-speed="0.55" data-orbit-phase="30">
+            <div class="node-counter-rotate">
+              <div class="frame frame-core"><span>羽</span></div>
+              <div class="node-label">羽毛</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/923711" target="_blank" data-avatar="assets/avatars/louzuo.jpg" class="net-node sat"
+             data-parent="node-wgz"
+             data-base-x="11" data-base-y="60"
+             data-orbit-r="3.2" data-orbit-speed="0.62" data-orbit-phase="90">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>楼</span></div>
+              <div class="node-label small">楼座</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/170338" target="_blank" data-avatar="assets/avatars/shouzhongwenxuan.jpg" class="net-node sat"
+             data-parent="node-wgz"
+             data-base-x="8" data-base-y="85"
+             data-orbit-r="3.5" data-orbit-speed="0.48" data-orbit-phase="150">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>文</span></div>
+              <div class="node-label small">手冢文轩</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/58978" target="_blank" data-avatar="assets/avatars/peiqi.jpg" class="net-node sat"
+             data-parent="node-wgz"
+             data-base-x="28" data-base-y="90"
+             data-orbit-r="3" data-orbit-speed="0.68" data-orbit-phase="210">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>佩</span></div>
+              <div class="node-label small">佩奇</div>
+            </div>
+          </a>
+          <a href="https://space.bilibili.com/679749" target="_blank" data-avatar="assets/avatars/bojue.jpg" class="net-node sat"
+             data-parent="node-wgz"
+             data-base-x="37" data-base-y="76"
+             data-orbit-r="2.8" data-orbit-speed="0.52" data-orbit-phase="270">
+            <div class="node-counter-rotate">
+              <div class="frame frame-child"><span>伯</span></div>
+              <div class="node-label small">伯爵</div>
+            </div>
+          </a>
+
+          <!-- 行星：黑桐谷歌（绕中心，独立、无卫星） -->
+          <a href="https://space.bilibili.com/43536" target="_blank" data-avatar="assets/avatars/heitonggugu.jpg" class="net-node planet"
+             id="node-hk"
+             data-parent="node-center"
+             data-base-x="75" data-base-y="78"
+             data-orbit-r="2.5" data-orbit-speed="0.42" data-orbit-phase="270">
+            <div class="node-counter-rotate">
+              <div class="frame frame-leader"><span>黑</span></div>
+              <div class="node-label">黑桐谷歌</div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="network-footer">⊙ 拖动旋转 · 卫星自动公转 · 头像可点击</div>
+      </div>
+    </div>
+
+    <div class="more-partners">
+      更多合作伙伴信息将陆续公布 · 期待与优秀的游戏创作团队同行
+    </div>
+  </div>
+</section>
+
+<!-- ============ 加入我们 ============ -->
+<section id="join" class="block" style="padding: 80px 0; border-top: 1px solid var(--line);">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;" class="join-grid">
+      <div class="reveal">
+        <div class="block-eyebrow">JOIN · 加入我们</div>
+        <h2 class="block-title" style="margin-bottom: 24px;">和我们<br>一起做点事</h2>
+        <p style="color: var(--ink-2); font-size: 16px; line-height: 1.8;">从内容创作到游戏研发，我们一直在寻找<strong style="color: var(--ink);">真正热爱游戏、愿意把热爱变成作品</strong>的人。如果你想加入我们，欢迎随时联系。</p>
+      </div>
+
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="padding: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 2px; margin-bottom: 8px;">CONTENT</div>
+          <h4 style="font-size: 17px; margin-bottom: 6px;">内容创作</h4>
+          <p style="font-size: 13px; color: var(--ink-3); margin: 0;">视频策划 / 编导 / 后期</p>
+        </div>
+        <div style="padding: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--orange-bright); letter-spacing: 2px; margin-bottom: 8px;">COMMERCE</div>
+          <h4 style="font-size: 17px; margin-bottom: 6px;">商务运营</h4>
+          <p style="font-size: 13px; color: var(--ink-3); margin: 0;">商务 / 客服 / 运营</p>
+        </div>
+        <div style="padding: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: #b478ff; letter-spacing: 2px; margin-bottom: 8px;">GAMEDEV</div>
+          <h4 style="font-size: 17px; margin-bottom: 6px;">游戏研发</h4>
+          <p style="font-size: 13px; color: var(--ink-3); margin: 0;">程序 / 美术 / 策划</p>
+        </div>
+        <div style="padding: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--danger); letter-spacing: 2px; margin-bottom: 8px;">INTERN</div>
+          <h4 style="font-size: 17px; margin-bottom: 6px;">实习生</h4>
+          <p style="font-size: 13px; color: var(--ink-3); margin: 0;">游戏爱好者欢迎</p>
+        </div>
+        <div style="grid-column: span 2; padding: 18px 24px; background: var(--bg-3); border: 1px dashed var(--line-2); border-radius: 12px; text-align: center; color: var(--ink-2); font-size: 14px;">
+          简历投递 → <a href="mailto:jywhhr@outlook.com" style="color: var(--cyan); text-decoration: none;">jywhhr@outlook.com</a>（标题注明：应聘+岗位）
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .join-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+</style>
+
+<!-- ============ 关于+联系 ============ -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="block-eyebrow">ABOUT · 关于极游文化</div>
+        <h2 class="block-title" style="margin-bottom: 32px;">游戏 ·<br>从内容开始</h2>
+        <p><strong>极游文化（RuaGames）</strong>是一家专注游戏文化的内容创作公司，旗下运营 <strong>Steam 情报局</strong>、<strong>极游组</strong> 等百万级粉丝矩阵账号，业务覆盖游戏内容创作、Steam Key 发行、独立游戏研发。</p>
+        <p>我们相信好游戏值得被认真讲述，也相信值得做的游戏永远不会嫌多。从一个看游戏的人，到做游戏的人——这是我们正在做的事。</p>
+      </div>
+
+      <div id="contact" class="contact-box reveal">
+        <h3>商务合作</h3>
+        <p>欢迎品牌合作、游戏发行、内容定制等各类商务咨询</p>
+
+        <div class="contact-row">
+          <span class="l">商务合作</span>
+          <a href="mailto:653134152@qq.com" class="v" style="color: var(--cyan); text-decoration: none;">653134152@qq.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="l">文章投稿</span>
+          <a href="mailto:gamesubmit@163.com" class="v" style="color: var(--cyan); text-decoration: none;">gamesubmit@163.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="l">招聘简历</span>
+          <a href="mailto:jywhhr@outlook.com" class="v" style="color: var(--cyan); text-decoration: none;">jywhhr@outlook.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="l">客服 QQ</span>
+          <span class="v">1214065405（Steam Key）</span>
+        </div>
+        <div class="contact-row">
+          <span class="l">BILIBILI</span>
+          <span class="v">@Steam情报局 / @极游组</span>
+        </div>
+        <div class="contact-row">
+          <span class="l">公众号</span>
+          <span class="v">极游组（二维码即将上线）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark"><img src="data:image/jpeg;base64,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" alt="极游文化 Logo"></span>
+          <div>
+            <div class="brand-name">极游文化</div>
+            <div class="brand-en">RUAGAMES</div>
+          </div>
+        </div>
+        <p>分享游戏快乐，传播游戏文化。</p>
+      </div>
+      <div class="footer-col">
+        <h5>BUSINESS · 业务</h5>
+        <a href="#steam">Steam 情报局</a>
+        <a href="#jiyou">极游组</a>
+        <a href="#game">猛兽地牢</a>
+        <a href="#partners">合作伙伴</a>
+      </div>
+      <div class="footer-col">
+        <h5>SOCIAL · 关注</h5>
+        <a href="https://space.bilibili.com/473519710" target="_blank">Steam 情报局 (B站)</a>
+        <a href="https://space.bilibili.com/198512590" target="_blank">极游组 (B站)</a>
+        <a href="https://weibo.com/u/5186845471" target="_blank">极游组 (微博)</a>
+      </div>
+      <div class="footer-col">
+        <h5>CONTACT · 联系</h5>
+        <a href="#contact">商务合作</a>
+        <a href="#contact">客服 QQ</a>
+        <a href="#join">加入我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copy">© 2025 极游文化 RUAGAMES · ALL RIGHTS RESERVED</span>
+      <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank" style="color: inherit;">皖ICP备2020020340号-1</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- 浮窗：Steam Key CTA -->
+<div class="float-cta" id="floatCta">
+  <span class="ic">⚡</span>
+  <span>淘宝购买 Steam Key</span>
+  <button class="float-cta-close" id="ctaClose" aria-label="关闭">×</button>
+</div>
+
+<!-- 回到顶部 -->
+<button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+<script>
+  // —— HERO 轮播 ——
+  const slider = document.getElementById('slider');
+  const slides = slider.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const counter = document.querySelector('.slider-counter .cur');
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    current = idx;
+    slider.style.transform = `translateX(-${idx * 100}%)`;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    counter.textContent = String(idx + 1).padStart(2, '0');
+  }
+  function next() { goTo((current + 1) % slides.length); }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => {
+    goTo(i); resetTimer();
+  }));
+  function resetTimer() { clearInterval(timer); timer = setInterval(next, 6000); }
+  resetTimer();
+
+  // —— 进入视口动画 ——
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // —— 浮窗 + 回到顶部 ——
+  const floatCta = document.getElementById('floatCta');
+  const toTop = document.getElementById('toTop');
+  const ctaClose = document.getElementById('ctaClose');
+  let ctaDismissed = false;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 600 && !ctaDismissed) floatCta.classList.add('show');
+    else floatCta.classList.remove('show');
+    toTop.classList.toggle('show', y > 600);
+  });
+
+  ctaClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    ctaDismissed = true;
+    floatCta.classList.remove('show');
+  });
+  floatCta.addEventListener('click', () => {
+    document.getElementById('steam-keys').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // —— 合作主播星系：缓慢自转 + 拖动 + 卫星轨道 + 动态连线 ——
+  (function setupOrbit() {
+    const stage = document.getElementById('orbitStage');
+    if (!stage) return;
+
+    // —— 自动加载主播头像 ——
+    // 节点上有 data-avatar 属性时，尝试加载对应图片
+    // 加载成功就替换占位字符；失败保持原样
+    stage.querySelectorAll('.net-node[data-avatar]').forEach(nodeEl => {
+      const url = nodeEl.dataset.avatar;
+      const frame = nodeEl.querySelector('.frame');
+      if (!frame || !url) return;
+      const img = new Image();
+      img.onload = () => {
+        // 加载成功，替换 frame 内的占位字符为图片
+        frame.innerHTML = '';
+        const realImg = document.createElement('img');
+        realImg.src = url;
+        realImg.alt = '';
+        frame.appendChild(realImg);
+      };
+      img.onerror = () => { /* 静默失败：保留占位 */ };
+      img.src = url;
+    });
+
+    const svg = document.getElementById('networkLines');
+    const allNodes = Array.from(stage.querySelectorAll('.net-node'));
+    if (allNodes.length === 0) return;
+
+    // 解析每个节点的配置
+    const nodes = allNodes.map(el => ({
+      el,
+      id: el.id || null,
+      counter: el.querySelector('.node-counter-rotate'),
+      parent: el.dataset.parent || null,
+      baseX: parseFloat(el.dataset.baseX),  // 百分比
+      baseY: parseFloat(el.dataset.baseY),
+      orbitR: parseFloat(el.dataset.orbitR) || 0,    // 轨道半径（百分比单位）
+      orbitSpeed: parseFloat(el.dataset.orbitSpeed) || 0,  // 度/秒
+      orbitPhase: parseFloat(el.dataset.orbitPhase) || 0,  // 初始相位（度）
+      x: 0, y: 0,  // 实时位置（容器百分比）
+      isHovered: false,
+    }));
+
+    // 按 id 建索引，便于查找母节点
+    const byId = {};
+    nodes.forEach(n => { if (n.id) byId[n.id] = n; });
+
+    // 定义"连线关系"：每条线连接两个节点 id（或 class 选择器）
+    // 中心 → 4 个行星；猛男寨 → 6 个卫星；喂狗组 → 5 个卫星
+    const links = [];
+    nodes.forEach(n => {
+      if (n.parent && byId[n.parent]) {
+        // 区分主干线（连中心）和分支线（连团体头）的颜色
+        const isMainBranch = n.parent === 'node-center';
+        links.push({
+          from: byId[n.parent],
+          to: n,
+          color: isMainBranch ? 'url(#lineGradCyan)' : 'url(#lineGradOrange)',
+          width: isMainBranch ? 1.4 : 1,
+          dash: isMainBranch ? '4 5' : '3 4',
+        });
+      }
+    });
+
+    // 预先创建所有 line 元素
+    const lineEls = links.map(l => {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('stroke', l.color);
+      line.setAttribute('stroke-width', l.width);
+      line.setAttribute('stroke-dasharray', l.dash);
+      svg.appendChild(line);
+      return line;
+    });
+
+    // 全局舞台旋转
+    let stageRotation = 0;
+    let velocity = 0.05;
+    const idleVelocity = 0.05;
+    let isDragging = false;
+    let lastPointerAngle = 0;
+    let lastFrameTime = 0;
+    let lastDragDelta = 0;
+    let elapsed = 0;  // 累计时间（秒），用于卫星轨道相位
+
+    function getCenter() {
+      const rect = stage.getBoundingClientRect();
+      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    }
+    function pointerAngle(clientX, clientY) {
+      const c = getCenter();
+      return Math.atan2(clientY - c.y, clientX - c.x) * 180 / Math.PI;
+    }
+
+    // hover 监听：hover 时暂停该节点自己的轨道运动（但不影响别人）
+    nodes.forEach(n => {
+      n.el.addEventListener('mouseenter', () => { n.isHovered = true; });
+      n.el.addEventListener('mouseleave', () => { n.isHovered = false; });
+    });
+
+    // 主循环
+    function animate(now) {
+      const dt = lastFrameTime ? Math.min((now - lastFrameTime) / 1000, 0.05) : 0.016;
+      lastFrameTime = now;
+      elapsed += dt;
+
+      // 1. 舞台整体旋转
+      if (!isDragging) {
+        velocity += (idleVelocity - velocity) * 0.02;
+      }
+      stageRotation += velocity * dt * 60;  // 转换为度（保持原速度感觉）
+
+      // 2. 计算每个节点的实时位置
+      //   先算中心节点（不动），再算行星（绕中心摆动），再算卫星（绕行星摆动）
+      //   顺序由数据结构隐式保证：parent 必须在 child 之前
+      nodes.forEach(n => {
+        if (!n.parent) {
+          // 中心节点
+          n.x = n.baseX;
+          n.y = n.baseY;
+          return;
+        }
+        // 子节点：基础位置 + 围绕 base 点的小幅椭圆摆动
+        // 如果 hover 了，暂停轨道（但保留当前位置不跳变，所以仍按当前相位算）
+        let phaseDeg = n.orbitPhase + (n.isHovered ? 0 : n.orbitSpeed * elapsed * 60);
+        const phaseRad = phaseDeg * Math.PI / 180;
+        // 略带椭圆（横向更扁），使运动更像"轨道"而非"漂"
+        const dx = Math.cos(phaseRad) * n.orbitR * 1.2;
+        const dy = Math.sin(phaseRad) * n.orbitR * 0.85;
+        n.x = n.baseX + dx;
+        n.y = n.baseY + dy;
+      });
+
+      // 3. 应用舞台旋转
+      stage.style.transform = `rotate(${stageRotation}deg)`;
+      // 节点位置（百分比 → 容器尺寸）
+      // 使用 transform 而非 left/top 提升性能
+      const rect = stage.getBoundingClientRect();
+      const w = rect.width, h = rect.height;
+      const invRotate = `rotate(${-stageRotation}deg)`;
+
+      nodes.forEach(n => {
+        // 节点位置：先按百分比定位到容器，然后用 translate(-50%, -50%) 居中
+        // 由于 .net-node 的 left/top 都是 0，所有定位都通过 transform 实现
+        const px = (n.x / 100) * w;
+        const py = (n.y / 100) * h;
+        n.el.style.transform = `translate(${px}px, ${py}px) translate(-50%, -50%)`;
+        // 内层反向旋转抵消舞台旋转，文字保持水平
+        if (n.counter) n.counter.style.transform = invRotate;
+      });
+
+      // 4. 重绘连线（基于真实位置）
+      // SVG viewBox 是 600x600，所以位置直接用百分比 * 6 转换
+      links.forEach((l, i) => {
+        const x1 = l.from.x * 6, y1 = l.from.y * 6;
+        const x2 = l.to.x * 6, y2 = l.to.y * 6;
+        const el = lineEls[i];
+        el.setAttribute('x1', x1);
+        el.setAttribute('y1', y1);
+        el.setAttribute('x2', x2);
+        el.setAttribute('y2', y2);
+      });
+
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // —— 鼠标拖动整体旋转 ——
+    function onPointerDown(e) {
+      if (e.target.closest('.net-node')) return;
+      isDragging = true;
+      stage.classList.add('dragging');
+      const x = e.clientX ?? e.touches?.[0]?.clientX;
+      const y = e.clientY ?? e.touches?.[0]?.clientY;
+      lastPointerAngle = pointerAngle(x, y);
+      lastDragDelta = 0;
+      e.preventDefault();
+    }
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const x = e.clientX ?? e.touches?.[0]?.clientX;
+      const y = e.clientY ?? e.touches?.[0]?.clientY;
+      if (x == null) return;
+      const ang = pointerAngle(x, y);
+      let delta = ang - lastPointerAngle;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      stageRotation += delta;
+      lastPointerAngle = ang;
+      lastDragDelta = delta;
+    }
+    function onPointerUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.classList.remove('dragging');
+      velocity = lastDragDelta * 2;  // 释放后的惯性
+    }
+
+    stage.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+    stage.addEventListener('touchstart', onPointerDown, { passive: false });
+    window.addEventListener('touchmove', onPointerMove, { passive: true });
+    window.addEventListener('touchend', onPointerUp);
+  })();
+
+
+</script>
+
+</body>
+</html>
